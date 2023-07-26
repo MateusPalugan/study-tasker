@@ -32,3 +32,6 @@ Interface amigável e intuitiva para facilitar o uso pelos estudantes.
 - [ ] Usar a diretiva ngIf.
 - [ ] Formatar a apresentação de dados com Pipes.
 - [ ] Build e deploy da aplicação.
+
+## Protótipo telas Figma
+https://www.figma.com/proto/di95MVeJYGcirI0SirQXsw/Untitled?type=design&node-id=1-15&t=BZMKkFx69BwjVjok-1&scaling=scale-down&page-id=1%3A2&starting-point-node-id=1%3A15&mode=designhttps://www.figma.com/proto/di95MVeJYGcirI0SirQXsw/Untitled?type=design&node-id=1-15&t=BZMKkFx69BwjVjok-1&scaling=scale-down&page-id=1%3A2&starting-point-node-id=1%3A15&mode=design

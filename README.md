@@ -35,3 +35,16 @@ Interface amigável e intuitiva para facilitar o uso pelos estudantes.
 
 ## Protótipo Telas Figma
 https://www.figma.com/proto/di95MVeJYGcirI0SirQXsw/Untitled?type=design&node-id=1-15&t=BZMKkFx69BwjVjok-1&scaling=scale-down&page-id=1%3A2&starting-point-node-id=1%3A15&mode=designhttps://www.figma.com/proto/di95MVeJYGcirI0SirQXsw/Untitled?type=design&node-id=1-15&t=BZMKkFx69BwjVjok-1&scaling=scale-down&page-id=1%3A2&starting-point-node-id=1%3A15&mode=design
+
+# Como Rodar o Projeto
+Antes de começar, certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
+1. Clone este repositório para o seu ambiente local:
+
+```bash
+git clone git@github.com:MateusPalugan/study-tasker.git
+cd study-tasker
+```
+2. Instale as dependências necessárias utilizando o npm:
+ ```bash
+npm install
+```

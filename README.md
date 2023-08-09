@@ -45,4 +45,6 @@ git clone git@github.com:MateusPalugan/study-tasker.git
 cd study-tasker
 ```
 2. Instale as dependências necessárias utilizando o npm:
+ ```bash
 npm install
+```

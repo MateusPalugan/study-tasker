@@ -43,6 +43,6 @@ Antes de começar, certifique-se de ter o [Node.js](https://nodejs.org/) instala
 ```bash
 git clone git@github.com:MateusPalugan/study-tasker.git
 cd study-tasker
-
+```
 2. Instale as dependências necessárias utilizando o npm:
 npm install

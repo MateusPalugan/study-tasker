@@ -1,1 +1,57 @@
-<p>task-list works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s6">
+                <h4>Tarefas Cadastradas</h4>
+              </div>
+              <div class="col s6 right-align">
+                <a routerLink="/">
+                  <button class="btn">Fechar</button>
+                </a>
+              </div>
+            </div>
+  
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li>
+                <div class="input-field" style="display: flex; align-items: center;">
+                  <input type="text" placeholder="Pesquisar" [(ngModel)]="pesquisaText" />
+                  <button class="btn" style="margin-left: 10px; margin-right: 5px;" (click)="realizarPesquisa()">Pesquisar</button>
+                </div>
+              </li>
+            </ul>
+  
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Descrição</th>
+                  <th>Prioridade</th>
+                  <th>Data de Entrega</th>
+                  <th>Categoria</th>
+                  <th>Operações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let task of tasks">
+                  <td>{{ task.titulo }}</td>
+                  <td>{{ task.descricao }}</td>
+                  <td>{{ task.prioridade }}</td>
+                  <td>{{ task.dataEntrega }}</td>
+                  <td>{{ task.categoria }}</td>
+                  <td>
+                    <a routerLink="/">
+                      <button class="btn" style="margin-left: 5px;">Apagar</button>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -48,3 +48,7 @@ cd study-tasker
  ```bash
 npm install
 ```
+3. Execute o comando:
+ ```bash
+ng serve --open
+```

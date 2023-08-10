@@ -1,50 +1,27 @@
-# study-tasker
+# StudyTasker
 
-Gerenciador de Tarefas para Estudantes
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
 
-# Descrição
+## Development server
 
-O Gerenciador de Tarefas para Estudantes é uma aplicação web desenvolvida para ajudar estudantes a organizar suas tarefas acadêmicas e compromissos pessoais. Com essa aplicação, os usuários podem cadastrar tarefas, definir prazos, prioridades e categorias, proporcionando uma forma mais eficiente de gerenciar suas atividades.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-# Funcionalidades Principais
+## Code scaffolding
 
-Cadastro de tarefas com campos como título, descrição, data de entrega, prioridade e categoria;
-Listagem das tarefas cadastradas;
-Interface amigável e intuitiva para facilitar o uso pelos estudantes.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## 📖 Tópicos/Checklist
+## Build
 
-- [X] Criar o repositório no GitHub com a estrutura do Gitflow, ou seja, branches main e develop.
-- [ ] Usar componentes de algum framework CSS (Bootstrap, Materialize ou outro).
-- [ ] Apresentar as telas com layout responsivo usando ou não algum framework CSS.
-- [ ] Construir páginas web com o conceito de componentes.
-- [ ] Criar o layout da aplicação com componentes, ou seja, o cabeçalho e rodapé precisam ser componentes.
-- [ ] Usar pelo menos dois tipos de data-binding (Interpolation, Property Binding, Event Binding e Two Way Data Binding).
-- [ ] Passar dados via hierarquia de componentes, ou seja, usando @Input ou @Output.
-- [ ] Mapear componentes à rotas no módulo de rotas.
-- [ ] Criar navegação entre páginas por meio de rotas.
-- [ ] Passar dados entre componentes que representam diferentes telas via parâmetros de rotas.
-- [ ] Validar campos do formulário com REGEX e apresentar os erros.
-- [ ] Desabilitar o botão de submit enquanto o formulário está inválido.
-- [ ] Fazer requisições a API com tratamento da resposta com Promises ou Observables.
-- [ ] Cadastrar uma entidade usando uma API (JSON Server).
-- [ ] Apresentar uma lista de dados com a diretiva estrutural ngFor.
-- [ ] Usar a diretiva ngIf.
-- [ ] Formatar a apresentação de dados com Pipes.
-- [ ] Build e deploy da aplicação.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Protótipo Telas Figma
-https://www.figma.com/proto/di95MVeJYGcirI0SirQXsw/Untitled?type=design&node-id=1-15&t=BZMKkFx69BwjVjok-1&scaling=scale-down&page-id=1%3A2&starting-point-node-id=1%3A15&mode=designhttps://www.figma.com/proto/di95MVeJYGcirI0SirQXsw/Untitled?type=design&node-id=1-15&t=BZMKkFx69BwjVjok-1&scaling=scale-down&page-id=1%3A2&starting-point-node-id=1%3A15&mode=design
+## Running unit tests
 
-# Como Rodar o Projeto
-Antes de começar, certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
-1. Clone este repositório para o seu ambiente local:
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-```bash
-git clone git@github.com:MateusPalugan/study-tasker.git
-cd study-tasker
-```
-2. Instale as dependências necessárias utilizando o npm:
- ```bash
-npm install
-```
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

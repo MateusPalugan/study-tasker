@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TaskService } from '../task.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -6,27 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 
-export class TaskListComponent implements OnInit {
-  tasks: any[] = []; 
+export class TaskListComponent {
+  tasks: any[] = [];
+
+  constructor(private router: Router, private taskService: TaskService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-   
-    this.tasks = [
-      {
-        titulo: 'Tarefa 1 exemplo',
-        descricao: 'Descrição da Tarefa 1',
-        prioridade: 'Alta',
-        dataEntrega: '2023-08-09',
-        categoria: 'Trabalho'
-      },
+    // Verifica se existe um parâmetro na rota
+    this.route.params.subscribe(params => {
+      if (params['titulo']) {
+        const tituloParam = params['titulo'];
+        this.tasks = this.taskService.getTasksByTitulo(tituloParam);
+      } else {
+        this.tasks = this.taskService.getTasks(); 
+      }
+    });
+  }
+
+  deleteTask(taskToDelete: any) {
+    const index = this.tasks.indexOf(taskToDelete);
+    if (index !== -1) {
+      this.tasks.splice(index, 1);
+      this.taskService.deleteTask(taskToDelete); 
+    }
+  }
+
   
-    ];
-  }
-
-  pesquisaText = '';
-
-  realizarPesquisa() {
-    console.log('Realizando pesquisa:', this.pesquisaText);
-    // ainda será implementado
-  }
 }

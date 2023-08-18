@@ -5,9 +5,12 @@ import { TaskFormComponent } from './task-form/task-form.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
+  //Mapear componentes à rotas no módulo de rotas.
   { path: 'cadastro-tarefas', component: TaskFormComponent } ,
-  { path: 'lista-tarefas', component: TaskListComponent } 
-
+  { path: 'lista-tarefas', component: TaskListComponent },
+  
+  //Passar dados entre componentes que representam diferentes telas via parâmetros de rotas. 
+  { path: 'lista-tarefas/:titulo', component: TaskListComponent } 
 ];
 
 @NgModule({

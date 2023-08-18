@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component}from '@angular/core';
 import { Router } from '@angular/router';
+import { TaskService } from '../task.service';
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-task-form',
@@ -7,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent {
+
   task = {
     titulo: '',
     descricao: '',
@@ -15,7 +18,7 @@ export class TaskFormComponent {
     categoria: ''
   };
 
-  constructor(private router: Router) {}
+  constructor(private taskService: TaskService) {}
 
   limparCampos() {
     this.task = {
@@ -28,9 +31,21 @@ export class TaskFormComponent {
   }
 
   cadastrarTarefa() {
-    // será implementado
-    console.log('Tarefa cadastrada:', this.task);
-    // Redirecionar para outra página após o cadastro
-    this.router.navigate(['/']);
+    const newTask = {
+      titulo: this.task.titulo,
+      descricao: this.task.descricao,
+      prioridade: this.task.prioridade,
+      dataEntrega: this.task.dataEntrega,
+      categoria: this.task.categoria
+    };
+
+    this.taskService.addTask(newTask);
+
+    M.toast({ html: 'Tarefa cadastrada com sucesso! Verifique na tela de listagem.', classes: 'green lighten-2 white-text' });
+
+    this.limparCampos();
   }
+  
+ 
+
 }

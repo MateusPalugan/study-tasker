@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as M from 'materialize-css'
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,14 @@ import * as M from 'materialize-css'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Por favor, selecione no canto superior esquerdo as opções e assim visualizar as telas ';
-  desc ='Telas e Botões ilustrativos - ainda serão implementados as funcionalidades';
+  title = 'Por favor, navegue utilizando o menu no canto superior esquerdo';
+  desc ='Cadastro, Consulta e Delete funcionando através de array';
+
+  showWelcomeModal = true;
+
+  closeWelcomeModal() {
+    this.showWelcomeModal = false;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

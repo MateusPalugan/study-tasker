@@ -3,12 +3,22 @@
     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
     <ul id="nav-mobile" class="left hide-on-med-and-down">
+      
+      <!--Criar navegação entre páginas por meio de rotas.-->
       <li><a routerLink="/cadastro-tarefas">Cadastro de Tarefas</a></li>
       <li><a routerLink="/lista-tarefas">Listar tarefas</a></li>
     </ul>
     
     <a href="#" class="brand-logo center">Bem-vindo</a>
   
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <div class="input-field" style="display: flex; align-items: center;">
+        <input type="text" placeholder="Pesquisar" [(ngModel)]="pesquisaText" />
+        <button class="btn" style="margin-left: 10px; margin-right: 5px;" (click)="pesquisarTarefa()">Pesquisar</button>
+      </div>
+      </li>
+    </ul>
   </div>
 </nav>
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { TaskService } from '../task.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -8,8 +8,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./task-list.component.css']
 })
 
-export class TaskListComponent {
+export class TaskListComponent  implements OnInit{
   tasks: any[] = [];
+
 
   constructor(private router: Router, private taskService: TaskService, private route: ActivatedRoute) {}
 
@@ -23,14 +24,16 @@ export class TaskListComponent {
         this.tasks = this.taskService.getTasks(); 
       }
     });
+    this.loadTasks(); 
+  }
+
+  loadTasks() {
+    this.tasks = this.taskService.getTasks();
   }
 
   deleteTask(taskToDelete: any) {
-    const index = this.tasks.indexOf(taskToDelete);
-    if (index !== -1) {
-      this.tasks.splice(index, 1);
-      this.taskService.deleteTask(taskToDelete); 
-    }
+    this.taskService.deleteTask(taskToDelete);
+    this.loadTasks();
   }
 
   

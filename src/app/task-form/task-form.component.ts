@@ -1,17 +1,38 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, AfterViewInit   } from '@angular/core';
 import { TaskService } from '../task.service';
 import * as M from 'materialize-css';
 import { Task } from '../task.model'; 
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css']
 })
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent implements OnInit , AfterViewInit {
 
+  ngAfterViewInit() {
+    M.updateTextFields();
+  }
+
+  
   ngOnInit() {
-    this.taskService.loadTasksFromLocalStorage(); 
+    this.taskService.loadTasksFromLocalStorage();
+  
+    this.route.params.subscribe(params => {
+      const taskId = params['id'];
+      if (taskId) {
+        const task = this.taskService.getTaskById(taskId);
+        if (task) {
+          this.task = task;
+        } else {
+          M.toast({
+            html: 'Tarefa não encontrada!',
+            classes: 'red lighten-2 white-text'
+          });
+        }
+      }
+    });
   }
 
   task: Task = {
@@ -24,7 +45,7 @@ export class TaskFormComponent implements OnInit {
 
   errors: Record<string, string> = {};
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private route: ActivatedRoute) {}
 
   limparCampos() {
     this.task = {
@@ -35,22 +56,6 @@ export class TaskFormComponent implements OnInit {
       categoria: ''
     };
     this.errors = {};
-  }
-
-  cadastrarTarefa() {
-    const newTask = {
-      titulo: this.task.titulo,
-      descricao: this.task.descricao,
-      prioridade: this.task.prioridade,
-      dataEntrega: this.task.dataEntrega,
-      categoria: this.task.categoria
-    };
-
-    this.taskService.addTask(newTask);
-
-    M.toast({ html: 'Tarefa cadastrada com sucesso! Verifique na tela de listagem.', classes: 'green lighten-2 white-text' });
-
-    this.limparCampos();
   }
 
   validateTitulo() {
@@ -99,6 +104,7 @@ export class TaskFormComponent implements OnInit {
 
 
   onSubmit() {
+    //Validar campos do formulário com Expressões Regulares e apresentar os erros.
     this.validateTitulo();
     this.validateDescricao();
     this.validatePrioridade();
@@ -106,21 +112,21 @@ export class TaskFormComponent implements OnInit {
     this.validateCategoria();
   
     if (!this.hasErrors()) {
-      const newTask = {
-        titulo: this.task.titulo,
-        descricao: this.task.descricao,
-        prioridade: this.task.prioridade,
-        dataEntrega: this.task.dataEntrega,
-        categoria: this.task.categoria
-      };
-  
-      this.taskService.addTask(newTask);
-  
-      M.toast({
-        html: 'Tarefa cadastrada com sucesso! Verifique na tela de listagem.',
-        classes: 'green lighten-2 white-text'
-      });
-  
+      if (this.task.id) {
+        // Atualizar tarefa existente
+        this.taskService.updateTask(this.task);
+        M.toast({
+          html: 'Tarefa atualizada com sucesso!',
+          classes: 'green lighten-2 white-text'
+        });
+      } else {
+        // Cadastrar nova tarefa
+        this.taskService.addTask(this.task);
+        M.toast({
+          html: 'Tarefa cadastrada com sucesso! Verifique na tela de listagem.',
+          classes: 'green lighten-2 white-text'
+        });
+      }
       this.limparCampos();
     } else {
       M.toast({

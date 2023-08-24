@@ -22,6 +22,7 @@
               name="titulo"
               required
               (input)="validateTitulo()"
+              placeholder="Trabalho de artes"
             />
             <label for="titulo">Título</label>
             <span class="error-message" *ngIf="errors['titulo']">{{ errors['titulo'] }}</span>
@@ -35,6 +36,7 @@
               name="descricao"
               required
               (input)="validateDescricao()"
+              placeholder="Pinturas"
             />
             <label for="descricao">Descrição</label>
             <span class="error-message" *ngIf="errors['descricao']">{{ errors['descricao'] }}</span>
@@ -49,6 +51,7 @@
               pattern="^[A-Za-z\s]+$"
               required
               (input)="validatePrioridade()"
+              placeholder="Baixa"
             />
             <label for="prioridade">Prioridade</label>
             <span class="error-message" *ngIf="errors['prioridade']">{{ errors['prioridade'] }}</span>
@@ -63,6 +66,7 @@
               pattern="^\d{4}-\d{2}-\d{2}$"
               required
               (input)="validateDataEntrega()"
+              placeholder="2023-01-01"
             />
             <label for="dataEntrega">Data de Entrega</label>
             <span class="error-message" *ngIf="errors['dataEntrega']">{{ errors['dataEntrega'] }}</span>
@@ -77,6 +81,7 @@
               pattern="^[A-Za-z\s]+$"
               required
               (input)="validateCategoria()"
+              placeholder="Trabalhos"
             />
             <label for="categoria">Categoria</label>
             <span class="error-message" *ngIf="errors['categoria']">{{ errors['categoria'] }}</span>
@@ -87,6 +92,8 @@
               <button class="btn" type="button" (click)="limparCampos()">Limpar</button>
             </div>
             <div class="col s6 right-align">
+              
+              <!--Desabilitar o botão de submit enquanto o formulário está inválido.-->
               <button class="btn" type="submit" [disabled]="hasErrors()">Cadastrar</button>
             </div>
           </div>

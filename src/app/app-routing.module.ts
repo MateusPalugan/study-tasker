@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'lista-tarefas', component: TaskListComponent },
   
   //Passar dados entre componentes que representam diferentes telas via parâmetros de rotas. 
-  { path: 'lista-tarefas/:titulo', component: TaskListComponent } 
+  { path: 'lista-tarefas/:titulo', component: TaskListComponent },
+  { path: 'task-form/:id', component: TaskFormComponent }
 ];
 
 @NgModule({

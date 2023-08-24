@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { Task } from './task.model';
 export class TaskService {
   tasks: Task[] = [];
 
+  //Cadastrar uma entidade no Web Storage.
   constructor() {
     this.loadTasksFromLocalStorage();
   }
@@ -21,12 +23,11 @@ export class TaskService {
   private saveTasksToLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
-
-  addTask(task: any) {
-    this.tasks.push(task);
+  addTask(task: Task) {
+    const taskWithId = { ...task, id: uuidv4() };
+    this.tasks.push(taskWithId); 
     this.saveTasksToLocalStorage();
   }
-
   getTasks() {
     return this.tasks;
   }
@@ -35,11 +36,24 @@ export class TaskService {
     return this.tasks.filter(task => task.titulo === titulo);
   }
   
-  deleteTask(taskToDelete: any) {
-    const index = this.tasks.indexOf(taskToDelete);
+  deleteTask(taskId: string) {
+    const index = this.tasks.findIndex(task => task.id === taskId);
     if (index !== -1) {
       this.tasks.splice(index, 1);
       this.saveTasksToLocalStorage();
     }
   }
+
+  getTaskById(taskId: string): Task | undefined {
+    return this.tasks.find(task => task.id === taskId);
+  }
+
+  updateTask(task: Task) {
+    const index = this.tasks.findIndex(t => t.id === task.id);
+    if (index !== -1) {
+      this.tasks[index] = task;
+      this.saveTasksToLocalStorage();
+    }
+  }
+  
 }

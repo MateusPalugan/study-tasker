@@ -33,6 +33,7 @@
                 <td>{{ task.dataEntrega }}</td>
                 <td>{{ task.categoria }}</td>
                 <td>
+                  <button class="btn" style="margin-left: 5px;" (click)="editTask(task)">Editar</button>
                   <button class="btn" style="margin-left: 5px;" (click)="deleteTask(task)">Apagar</button>
                 </td>
               </tr>

@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AppHeaderComponent {
   pesquisaText: string = ''; 
+  cadTarefa = 'Cadastro de Tarefas'
+  list ='Listar tarefas'
   constructor(private router: Router) {}
   
   pesquisarTarefa() {

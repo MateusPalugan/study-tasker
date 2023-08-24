@@ -8,8 +8,6 @@ import { TaskService } from './task.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Por favor, navegue utilizando o menu no canto superior esquerdo';
-  desc ='Cadastro, Consulta e Delete funcionando através de array';
 
   showWelcomeModal = true;
 

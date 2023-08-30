@@ -48,11 +48,11 @@ cd study-tasker
  ```bash
 npm install
 ```
-3.Iniciar json-server:
+3. Iniciar json-server:
  ```bash
 npm run json-server
 ```
-4.Execute o comando:
+4. Execute o comando:
  ```bash
 ng serve --open
 ```

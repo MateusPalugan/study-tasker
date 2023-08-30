@@ -1,0 +1,29 @@
+{
+  "tasks": [
+    {
+      "titulo": "Historia de roma",
+      "descricao": "aaa",
+      "prioridade": "sss",
+      "dataEntrega": "2023-12-10",
+      "categoria": "aaa",
+      "id": "baf418c1-539f-4102-bdb5-6a5fcbdd1d93"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

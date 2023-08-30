@@ -24,6 +24,9 @@ export class TaskService {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
+  //Fazer requisições a API com tratamento da resposta com Promises
+  //Cadastrar uma entidade no JSON Server.
+  
   async loadTasksFromApi() {
     try {
       const response = await fetch('http://localhost:3000/tasks'); 

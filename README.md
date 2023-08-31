@@ -26,8 +26,8 @@ Interface amigável e intuitiva para facilitar o uso pelos estudantes.
 - [X] Passar dados entre componentes que representam diferentes telas via parâmetros de rotas.
 - [X] Validar campos do formulário com REGEX e apresentar os erros.
 - [X] Desabilitar o botão de submit enquanto o formulário está inválido.
-- [ ] Fazer requisições a API com tratamento da resposta com Promises ou Observables.
-- [ ] Cadastrar uma entidade usando uma API (JSON Server).
+- [X] Fazer requisições a API com tratamento da resposta com Promises ou Observables.
+- [X] Cadastrar uma entidade usando uma API (JSON Server).
 - [X] Apresentar uma lista de dados com a diretiva estrutural ngFor.
 - [X] Usar a diretiva ngIf.
 - [ ] Formatar a apresentação de dados com Pipes.
@@ -48,7 +48,12 @@ cd study-tasker
  ```bash
 npm install
 ```
-3. Execute o comando:
+3. Iniciar json-server:
+ ```bash
+npm run json-server
+```
+4. Execute o comando:
  ```bash
 ng serve --open
 ```
+

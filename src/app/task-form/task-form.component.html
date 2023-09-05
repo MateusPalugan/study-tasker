@@ -1,49 +1,105 @@
 <div class="container">
-    <div class="row">
-      <div class="col s12">
-        <div class="card-panel">
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel">
+        <div class="row">
+          <div class="col s6">
+            <h4>Cadastro</h4>
+          </div>
+          <div class="col s6 right-align">
+            <a routerLink="/">
+              <button class="btn">Fechar</button>
+            </a>
+          </div>
+        </div>
+
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="input-field">
+            <input
+              type="text"
+              id="titulo"
+              [(ngModel)]="task.titulo"
+              name="titulo"
+              required
+              (input)="validateTitulo()"
+              placeholder="Trabalho de artes"
+            />
+            <label for="titulo">Título</label>
+            <!--usa ngIf para exibir erro se existir-->
+            <span class="error-message" *ngIf="errors['titulo']">{{ errors['titulo'] }}</span>
+          </div>
+
+          <div class="input-field">
+            <input
+              type="text"
+              id="descricao"
+              [(ngModel)]="task.descricao"
+              name="descricao"
+              required
+              (input)="validateDescricao()"
+              placeholder="Pinturas"
+            />
+            <label for="descricao">Descrição</label>
+            <span class="error-message" *ngIf="errors['descricao']">{{ errors['descricao'] }}</span>
+          </div>
+
+          <div class="input-field">
+            <input
+              type="text"
+              id="prioridade"
+              [(ngModel)]="task.prioridade"
+              name="prioridade"
+              pattern="^[A-Za-z\s]+$"
+              required
+              (input)="validatePrioridade()"
+              placeholder="Baixa"
+            />
+            <label for="prioridade">Prioridade</label>
+            <span class="error-message" *ngIf="errors['prioridade']">{{ errors['prioridade'] }}</span>
+          </div>
+
+          <div class="input-field">
+            <input
+              type="text"
+              id="dataEntrega"
+              [(ngModel)]="task.dataEntrega"
+              name="dataEntrega"
+              pattern="^\d{4}-\d{2}-\d{2}$"
+              required
+              (input)="validateDataEntrega()"
+              placeholder="2023-01-01"
+            />
+            <label for="dataEntrega">Data de Entrega</label>
+            <span class="error-message" *ngIf="errors['dataEntrega']">{{ errors['dataEntrega'] }}</span>
+          </div>
+
+          <div class="input-field">
+            <input
+              type="text"
+              id="categoria"
+              [(ngModel)]="task.categoria"
+              name="categoria"
+              pattern="^[A-Za-z\s]+$"
+              required
+              (input)="validateCategoria()"
+              placeholder="Trabalhos"
+            />
+            <label for="categoria">Categoria</label>
+            <span class="error-message" *ngIf="errors['categoria']">{{ errors['categoria'] }}</span>
+          </div>
+
           <div class="row">
             <div class="col s6">
-              <h4>Cadastro</h4>
+              <button class="btn" type="button" (click)="limparCampos()">Limpar</button>
             </div>
             <div class="col s6 right-align">
-              <a routerLink="/">
-                <button class="btn">Fechar</button>
-              </a>
+              
+              <!--Desabilitar o botão de submit enquanto o formulário está inválido.-->
+              <button class="btn" type="submit" [disabled]="hasErrors()">Cadastrar</button>
             </div>
           </div>
-  
-          <form>
-            <div class="input-field">
-              <input type="text" id="titulo" [(ngModel)]="task.titulo" />
-              <label for="titulo">Título</label>
-            </div>
-            <div class="input-field">
-              <input type="text" id="descricao" [(ngModel)]="task.descricao" />
-              <label for="descricao">Descrição</label>
-            </div>
-            <div class="input-field">
-              <input type="text" id="prioridade" [(ngModel)]="task.prioridade" />
-              <label for="prioridade">Prioridade</label>
-            </div>
-            <div class="input-field">
-              <input type="text" id="dataEntrega" [(ngModel)]="task.dataEntrega" />
-              <label for="dataEntrega">Data de Entrega</label>
-            </div>
-            <div class="input-field">
-              <input type="text" id="categoria" [(ngModel)]="task.categoria" />
-              <label for="categoria">Categoria</label>
-            </div>
-            <div class="row">
-              <div class="col s6">
-                <button class="btn" (click)="limparCampos()">Limpar</button>
-              </div>
-              <div class="col s6 right-align">
-                <button class="btn" (click)="cadastrarTarefa()">Cadastrar</button>
-              </div>
-            </div>
-          </form>
-        </div>
+        </form>
       </div>
     </div>
   </div>
+</div>

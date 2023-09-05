@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
+import { TaskService } from '../task.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Task } from '../task.model'; 
 
 @Component({
   selector: 'app-task-list',
@@ -6,27 +9,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 
-export class TaskListComponent implements OnInit {
-  tasks: any[] = []; 
+export class TaskListComponent  implements OnInit{
+  tasks: any[] = [];
 
-  ngOnInit(): void {
-   
-    this.tasks = [
-      {
-        titulo: 'Tarefa 1 exemplo',
-        descricao: 'Descrição da Tarefa 1',
-        prioridade: 'Alta',
-        dataEntrega: '2023-08-09',
-        categoria: 'Trabalho'
-      },
+
+  constructor(private router: Router, private taskService: TaskService, private route: ActivatedRoute) {}
+
+ngOnInit(): void {
+  // Verifica se existe um parâmetro na rota
+  this.route.params.subscribe(params => {
+    if (params['titulo']) {
+      const tituloParam = params['titulo'];
+      console.log("Título da pesquisa:", tituloParam);
+      this.tasks = this.taskService.getTasksByTitulo(tituloParam);
+    } else {
+      this.tasks = this.taskService.getTasks(); 
+    }    
+  });
+}
+
+  loadTasks() {
+    this.tasks = this.taskService.getTasks();
+  }
+
+  deleteTask(taskToDelete: any) {
+    this.taskService.deleteTask(taskToDelete.id);
+    this.loadTasks();
+  }
+
+  editTask(task: Task) {
+    const taskCopy = { ...task }; // Clona a tarefa para edição
+    this.router.navigate(['/task-form', task.id], { state: { task: taskCopy } });
+  }
   
-    ];
-  }
-
-  pesquisaText = '';
-
-  realizarPesquisa() {
-    console.log('Realizando pesquisa:', this.pesquisaText);
-    // ainda será implementado
-  }
+  
 }

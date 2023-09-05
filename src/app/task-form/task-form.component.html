@@ -25,6 +25,7 @@
               placeholder="Trabalho de artes"
             />
             <label for="titulo">Título</label>
+            <!--usa ngIf para exibir erro se existir-->
             <span class="error-message" *ngIf="errors['titulo']">{{ errors['titulo'] }}</span>
           </div>
 

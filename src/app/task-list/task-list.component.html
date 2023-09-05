@@ -30,7 +30,7 @@
                 <td>{{ task.titulo }}</td>
                 <td>{{ task.descricao }}</td>
                 <td>{{ task.prioridade }}</td>
-                <td>{{ task.dataEntrega }}</td>
+                <td>{{ task.dataEntrega | dateFormat }}</td>
                 <td>{{ task.categoria }}</td>
                 <td>
                   <button class="btn" style="margin-left: 5px;" (click)="editTask(task)">Editar</button>

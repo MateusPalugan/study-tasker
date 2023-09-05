@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task.model';
 import { v4 as uuidv4 } from 'uuid';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class TaskService {
   tasks: Task[] = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.loadTasksFromApi();
     this.loadTasksFromLocalStorage();
   }
@@ -24,53 +27,42 @@ export class TaskService {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
-  //Fazer requisições a API com tratamento da resposta com Promises
-  //Cadastrar uma entidade no JSON Server.
-  
-  async loadTasksFromApi() {
-    try {
-      const response = await fetch('http://localhost:3000/tasks'); 
-      if (response.ok) {
-        const tasks = await response.json();
+  // uso do observable
+  loadTasksFromApi() {
+    this.http.get<Task[]>('http://localhost:3000/tasks')
+      .pipe(
+        catchError(error => {
+          console.error('Erro ao obter tarefas da API:', error);
+          return throwError(error);
+        })
+      )
+      .subscribe(tasks => {
         this.tasks = tasks;
-      } else {
-        console.error('Erro ao obter tarefas da API:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Erro ao obter tarefas da API:', error);
-    }
+      });
   }
 
   addTask(task: Task) {
     const taskWithId = { ...task, id: uuidv4() };
     this.tasks.push(taskWithId);
     this.saveTasksToLocalStorage();
-    this.createTaskOnApi(taskWithId); // Chama a função para criar a tarefa na API
+    this.createTaskOnApi(taskWithId);
   }
 
-  async createTaskOnApi(task: Task) {
-    try {
-      const response = await fetch('http://localhost:3000/tasks', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(task)
-      });
-
-      if (!response.ok) {
-        console.error('Erro ao cadastrar tarefa na API:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Erro ao cadastrar tarefa na API:', error);
-    }
+  createTaskOnApi(task: Task): Observable<any> {
+    return this.http.post('http://localhost:3000/tasks', task)
+      .pipe(
+        catchError(error => {
+          console.error('Erro ao cadastrar tarefa na API:', error);
+          return throwError(error);
+        })
+      );
   }
 
-  getTasks() {
+  getTasks(): Task[] {
     return this.tasks;
   }
 
-  getTasksByTitulo(titulo: string) {
+  getTasksByTitulo(titulo: string): Task[] {
     return this.tasks.filter(task => task.titulo === titulo);
   }
 
@@ -79,22 +71,18 @@ export class TaskService {
     if (index !== -1) {
       this.tasks.splice(index, 1);
       this.saveTasksToLocalStorage();
-      this.deleteTaskOnApi(taskId); // Chama a função para deletar a tarefa da API
+      this.deleteTaskOnApi(taskId);
     }
   }
 
-  async deleteTaskOnApi(taskId: string) {
-    try {
-      const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-        method: 'DELETE'
-      });
-
-      if (!response.ok) {
-        console.error('Erro ao deletar tarefa na API:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Erro ao deletar tarefa na API:', error);
-    }
+  deleteTaskOnApi(taskId: string): Observable<any> {
+    return this.http.delete(`http://localhost:3000/tasks/${taskId}`)
+      .pipe(
+        catchError(error => {
+          console.error('Erro ao deletar tarefa na API:', error);
+          return throwError(error);
+        })
+      );
   }
 
   getTaskById(taskId: string): Task | undefined {
@@ -106,25 +94,17 @@ export class TaskService {
     if (index !== -1) {
       this.tasks[index] = task;
       this.saveTasksToLocalStorage();
-      this.updateTaskOnApi(task); // Chama a função para atualizar a tarefa na API
+      this.updateTaskOnApi(task);
     }
   }
 
-  async updateTaskOnApi(task: Task) {
-    try {
-      const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(task)
-      });
-
-      if (!response.ok) {
-        console.error('Erro ao atualizar tarefa na API:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Erro ao atualizar tarefa na API:', error);
-    }
+  updateTaskOnApi(task: Task): Observable<any> {
+    return this.http.put(`http://localhost:3000/tasks/${task.id}`, task)
+      .pipe(
+        catchError(error => {
+          console.error('Erro ao atualizar tarefa na API:', error);
+          return throwError(error);
+        })
+      );
   }
 }

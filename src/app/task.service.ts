@@ -10,23 +10,8 @@ export class TaskService {
 
   constructor() {
     this.loadTasksFromApi();
-    this.loadTasksFromLocalStorage();
   }
 
-  loadTasksFromLocalStorage() {
-    const tasksString = localStorage.getItem('tasks');
-    if (tasksString) {
-      this.tasks = JSON.parse(tasksString);
-    }
-  }
-
-  private saveTasksToLocalStorage() {
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-  }
-
-  //Fazer requisições a API com tratamento da resposta com Promises
-  //Cadastrar uma entidade no JSON Server.
-  
   async loadTasksFromApi() {
     try {
       const response = await fetch('http://localhost:3000/tasks'); 
@@ -44,7 +29,6 @@ export class TaskService {
   addTask(task: Task) {
     const taskWithId = { ...task, id: uuidv4() };
     this.tasks.push(taskWithId);
-    this.saveTasksToLocalStorage();
     this.createTaskOnApi(taskWithId); // Chama a função para criar a tarefa na API
   }
 
@@ -78,7 +62,6 @@ export class TaskService {
     const index = this.tasks.findIndex(task => task.id === taskId);
     if (index !== -1) {
       this.tasks.splice(index, 1);
-      this.saveTasksToLocalStorage();
       this.deleteTaskOnApi(taskId); // Chama a função para deletar a tarefa da API
     }
   }
@@ -105,7 +88,6 @@ export class TaskService {
     const index = this.tasks.findIndex(t => t.id === task.id);
     if (index !== -1) {
       this.tasks[index] = task;
-      this.saveTasksToLocalStorage();
       this.updateTaskOnApi(task); // Chama a função para atualizar a tarefa na API
     }
   }

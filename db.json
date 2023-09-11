@@ -1,14 +1,5 @@
 {
-  "tasks": [
-    {
-      "titulo": "Historia de roma",
-      "descricao": "aaa",
-      "prioridade": "sss",
-      "dataEntrega": "2023-12-10",
-      "categoria": "aaa",
-      "id": "baf418c1-539f-4102-bdb5-6a5fcbdd1d93"
-    }
-  ],
+  "tasks": [],
   "posts": [
     {
       "id": 1,

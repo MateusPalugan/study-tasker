@@ -17,8 +17,6 @@ export class TaskFormComponent implements OnInit , AfterViewInit {
 
   
   ngOnInit() {
-    this.taskService.loadTasksFromLocalStorage();
-  
     this.route.params.subscribe(params => {
       const taskId = params['id'];
       if (taskId) {

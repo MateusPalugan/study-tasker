@@ -1,14 +1,5 @@
 {
-  "tasks": [
-    {
-      "titulo": "d",
-      "descricao": "sd",
-      "prioridade": "d",
-      "dataEntrega": "2023-12-10",
-      "categoria": "sda",
-      "id": "56ec7a50-c827-47f2-a5fe-840dc117b530"
-    }
-  ],
+  "tasks": [],
   "posts": [
     {
       "id": 1,

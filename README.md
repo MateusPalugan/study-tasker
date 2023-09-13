@@ -56,4 +56,6 @@ npm run json-server
  ```bash
 ng serve --open
 ```
+## Link GitHub Pages
+https://mateuspalugan.github.io/study-tasker/
 

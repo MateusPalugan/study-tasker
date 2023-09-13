@@ -59,42 +59,53 @@ export class TaskFormComponent implements OnInit , AfterViewInit {
   validateTitulo() {
     if (!this.task.titulo) {
       this.errors['titulo'] = 'Título é obrigatório';
+    } else if (!this.task.titulo.trim()) {
+      this.errors['titulo'] = 'Título não pode ser apenas espaços em branco';
     } else {
       this.errors['titulo'] = '';
     }
   }
-
+  
   validateDescricao() {
     if (!this.task.descricao) {
       this.errors['descricao'] = 'Descrição é obrigatória';
+    } else if (!this.task.descricao.trim()) {
+      this.errors['descricao'] = 'Descrição não pode ser apenas espaços em branco';
     } else {
       this.errors['descricao'] = '';
     }
   }
-
+  
   validatePrioridade() {
-    if (!this.task.prioridade.match(/^[A-Za-z\s]+$/)) {
+    if (!this.task.prioridade) {
+      this.errors['prioridade'] = 'Prioridade é obrigatória';
+    } else if (!this.task.prioridade.match(/^[A-Za-z\s]+$/) || !this.task.prioridade.trim()) {
       this.errors['prioridade'] = 'Prioridade deve conter apenas letras e espaços';
     } else {
       this.errors['prioridade'] = '';
     }
   }
-
+  
   validateDataEntrega() {
-    if (!this.task.dataEntrega.match(/^\d{4}-\d{2}-\d{2}$/)) {
+    if (!this.task.dataEntrega) {
+      this.errors['dataEntrega'] = 'Data de Entrega é obrigatória';
+    } else if (!this.task.dataEntrega.match(/^\d{4}-\d{2}-\d{2}$/) || !this.task.dataEntrega.trim()) {
       this.errors['dataEntrega'] = 'Data de Entrega deve estar no formato yyyy-mm-dd';
     } else {
       this.errors['dataEntrega'] = '';
     }
   }
-
+  
   validateCategoria() {
-    if (!this.task.categoria.match(/^[A-Za-z\s]+$/)) {
+    if (!this.task.categoria) {
+      this.errors['categoria'] = 'Categoria é obrigatória';
+    } else if (!this.task.categoria.match(/^[A-Za-z\s]+$/) || !this.task.categoria.trim()) {
       this.errors['categoria'] = 'Categoria deve conter apenas letras e espaços';
     } else {
       this.errors['categoria'] = '';
     }
   }
+  
 
   hasErrors(): boolean {
     return Object.values(this.errors).some(error => error !== '');
